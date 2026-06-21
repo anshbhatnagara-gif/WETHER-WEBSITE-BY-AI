@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clean, fast weather website powered by the free Open-Meteo API. No API key required." />
+  <title>SkyCast — Weather</title>
+  <link rel="preconnect" href="https://geocoding-api.open-meteo.com" />
+  <link rel="preconnect" href="https://api.open-meteo.com" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">⛅</span>
+        <h1>SkyCast</h1>
+      </div>
+      <form class="search" id="searchForm" autocomplete="off" role="search">
+        <input
+          id="searchInput"
+          type="text"
+          name="city"
+          placeholder="Search city (e.g. Delhi, London, Tokyo)"
+          aria-label="Search city"
+        />
+        <button type="submit" id="searchBtn" aria-label="Search">Search</button>
+        <button type="button" id="geoBtn" class="ghost" aria-label="Use my location" title="Use my location">📍</button>
+        <button type="button" id="unitBtn" class="ghost" aria-label="Toggle units" title="Toggle °C / °F">°C</button>
+      </form>
+    </header>
+
+    <main>
+      <div id="status" class="status" role="status" aria-live="polite">Loading weather…</div>
+
+      <section id="current" class="card current hidden" aria-label="Current weather">
+        <div class="current-main">
+          <div class="current-icon" id="curIcon">⛅</div>
+          <div class="current-temp">
+            <span id="curTemp">--</span><span class="deg" id="curUnit">°C</span>
+          </div>
+          <div class="current-meta">
+            <h2 id="curPlace">—</h2>
+            <p id="curDesc">—</p>
+            <p class="muted" id="curFeels">Feels like —</p>
+          </div>
+        </div>
+        <ul class="stats">
+          <li><span class="stat-label">Humidity</span><span id="curHumidity">—</span></li>
+          <li><span class="stat-label">Wind</span><span id="curWind">—</span></li>
+          <li><span class="stat-label">Precipitation</span><span id="curPrecip">—</span></li>
+          <li><span class="stat-label">UV Index</span><span id="curUv">—</span></li>
+        </ul>
+      </section>
+
+      <section id="hourlySection" class="card hidden" aria-label="Hourly forecast">
+        <h3 class="section-title">Next 24 hours</h3>
+        <div class="hourly" id="hourly"></div>
+      </section>
+
+      <section id="dailySection" class="card hidden" aria-label="7 day forecast">
+        <h3 class="section-title">7-day forecast</h3>
+        <div class="daily" id="daily"></div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · no API key required</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
