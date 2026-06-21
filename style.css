@@ -651,3 +651,39 @@ body.dark {
     justify-content: flex-end;
   }
 }
+
+/* ========================================= */
+/* HORROR THEME CUSTOM STYLING               */
+/* ========================================= */
+.horror-text {
+  font-family: 'Creepster', cursive !important;
+  font-size: 38px;
+  letter-spacing: 1.5px;
+  color: #ff3333 !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.9) !important;
+  animation: flicker 2s infinite alternate;
+}
+
+.horror-welcome-msg {
+  font-family: 'Creepster', cursive;
+  color: #ff7c7c;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.9) !important;
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    text-shadow: none !important;
+    color: #4d0000 !important;
+    opacity: 0.6;
+  }
+}
