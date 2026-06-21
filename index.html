@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather — Created by Ansh Bhatnagar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <h1 class="logo">Weather</h1>
+      <div class="controls">
+        <button id="locationBtn" class="icon-btn" title="Use current location">📍</button>
+        <button id="themeToggle" class="icon-btn" title="Toggle dark mode">🌓</button>
+        <div class="unit-toggle-wrap">
+          <button id="unitToggle" class="unit-toggle" title="Toggle temperature units">
+            <span class="unit-toggle-slider"></span>
+            <span class="unit-option active" id="unitOptC">°C</span>
+            <span class="unit-option" id="unitOptF">°F</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="search-card glass">
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <input id="searchInput" type="text" placeholder="Enter city name (e.g., London)" aria-label="City name" autocomplete="off" />
+          <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
+        </div>
+        <button id="searchBtn" class="primary">Search</button>
+      </div>
+      <p id="errorMsg" class="error hidden" role="status" aria-live="polite"></p>
+      <div id="recentWrap" class="recent hidden">
+        <strong>Recent:</strong>
+        <div id="recentList" class="recent-list"></div>
+      </div>
+    </section>
+
+    <section id="weatherCard" class="weather-card glass hidden" aria-live="polite">
+      <div class="current">
+        <div class="left">
+          <h2 id="city">—</h2>
+          <p id="condition" class="condition">—</p>
+          <div class="temp-row">
+            <img id="icon" alt="weather icon" class="weather-icon-float" />
+            <div>
+              <div id="temp" class="temp">—</div>
+              <div id="feels" class="sub">Feels like: —</div>
+            </div>
+          </div>
+        </div>
+        <div class="right details">
+          <div class="detail-item">
+            <span class="detail-label">Humidity</span>
+            <span class="detail-val"><span id="humidity">—</span>%</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Wind</span>
+            <span class="detail-val"><span id="wind">—</span> <span id="windUnit">m/s</span></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">UV Index</span>
+            <span class="detail-val"><span id="uvIndex">—</span></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Pressure</span>
+            <span class="detail-val"><span id="pressure">—</span> hPa</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Visibility</span>
+            <span class="detail-val"><span id="visibility">—</span> km</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hourly Temperature Trend Chart -->
+      <div class="hourly-trend-card">
+        <h3>24-Hour Temperature Trend</h3>
+        <div class="chart-container">
+          <svg id="hourlyChart" viewBox="0 0 500 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            <path id="chartArea" fill="url(#chartGradient)" d="" />
+            <path id="chartLine" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" d="" />
+            <g id="chartPoints"></g>
+            <g id="chartGridLines"></g>
+          </svg>
+          <div id="chartLabels" class="chart-labels"></div>
+        </div>
+      </div>
+
+      <div id="forecast" class="forecast-grid" aria-label="5 day forecast"></div>
+    </section>
+
+    <div id="loading" class="loading hidden" aria-hidden="true">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="loading-text">Fetching weather…</div>
+    </div>
+
+    <footer class="footer">Created by Ansh Bhatnagar</footer>
+  </main>
+
+  <script defer src="script.js"></script>
+</body>
+</html>
